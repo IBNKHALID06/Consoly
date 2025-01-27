@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Consoly - Anonymous Support Network</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Consoly is an anonymous support network for emotional and mental health support.">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="w3-theme-l5">
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4" aria-label="Home">
+            <i class="fas fa-home w3-margin-right"></i>Home
+        </a>
+        <a href="consoly-profile.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" aria-label="Profile">
+            <i class="fas fa-user w3-margin-right"></i>Profile
+        </a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" aria-label="Notifications">
+            <i class="fas fa-bell w3-margin-right"></i>Notifications
+        </a>
+        <div class="w3-dropdown-hover w3-hide-small">
+            <button class="w3-button w3-padding-large" title="Settings" aria-label="Settings">
+                <i class="fas fa-cog"></i>
+            </button>
+            <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                <a href="consoly-settings.html" class="w3-bar-item w3-button">Settings</a>
+                <a href="#" class="w3-bar-item w3-button">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="w3-row">
+        <!-- Left Column -->
+        <aside class="w3-col m3">
+            <div class="w3-card w3-round w3-white">
+                <div class="w3-container">
+                    <h4 class="w3-center">My Profile</h4>
+                    <p class="w3-center"><img src="img/avatar1.jpg" class="w3-circle" style="height:106px;width:106px" alt="User Avatar"></p>
+                    <hr>
+                    <p><i class="fas fa-heart fa-fw w3-margin-right"></i> Emotional Support</p>
+                    <p><i class="fas fa-home fa-fw w3-margin-right"></i> Anonymous Network</p>
+                </div>
+            </div>
+            <br>
+            
+            <!-- Support Categories -->
+            <div class="w3-card w3-round w3-white">
+                <div class="w3-container">
+                    <p>Support Categories</p>
+                    <p>
+                        <span class="w3-tag w3-small w3-theme-d5">Grief</span>
+                        <span class="w3-tag w3-small w3-theme-d4">Anxiety</span>
+                        <span class="w3-tag w3-small w3-theme-d3">Depression</span>
+                        <span class="w3-tag w3-small w3-theme-d2">Trauma</span>
+                    </p>
+                </div>
+            </div>
+            <br>
+        </aside>
+        
+        <!-- Middle Column -->
+        <main class="w3-col m7">
+            <div class="w3-row-padding">
+                <div class="w3-col m12">
+                    <div class="w3-card w3-round w3-white">
+                        <div class="w3-container w3-padding">
+                            <h6 class="w3-opacity">Share Your Feelings Anonymously</h6>
+                            <textarea class="w3-border w3-padding w3-full" rows="4" placeholder="What's on your mind?" data-post-content aria-label="Post Content"></textarea>
+                            <button type="button" class="w3-button w3-theme w3-margin-top" data-post-button aria-label="Post">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Posts -->
+            <div class="w3-container w3-card w3-white w3-round w3-margin" data-posts-container>
+                <br>
+                <p>Anonymous Post about Mental Health</p>
+                <hr class="w3-clear">
+                <p>Living with anxiety is challenging. Some days feel impossible, but I'm learning to be kind to myself.</p>
+            </div>
+        </main>
+        
+        <!-- Right Column -->
+        <aside class="w3-col m2">
+            <div class="w3-card w3-round w3-white w3-center">
+                <div class="w3-container">
+                    <h4>Crisis Support</h4>
+                    <p>Need Immediate Help?</p>
+                    <button class="w3-button w3-block w3-theme-d3" aria-label="Get Support">Get Support</button>
+                </div>
+            </div>
+            <br>
+        </aside>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-d3 w3-padding-16 w3-center">
+    <p>© <span id="currentYear"></span> Consoly - Anonymous Support Network</p>
+</footer>
+
+<script src="js/main.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
