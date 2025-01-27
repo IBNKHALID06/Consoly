@@ -1,0 +1,49 @@
+/* Custom Consoly Styles */
+
+/* Define theme colors */
+:root {
+    --theme-color-d2: #4a90e2;
+    --theme-color-d3: #3a7bd5;
+}
+
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Theme color styles */
+.w3-theme-d2 {
+    background-color: var(--theme-color-d2) !important;
+    color: white !important;
+}
+
+.w3-theme-d3 {
+    background-color: var(--theme-color-d3) !important;
+    color: white !important;
+}
+
+/* Anonymous post styling */
+.anonymous-post {
+    position: relative;
+    opacity: 0.9;
+}
+
+.anonymous-post::before {
+    content: 'Anonymous';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background-color: #777;
+    color: white;
+    padding: 2px 5px;
+    font-size: 0.7em;
+    border-radius: 3px;
+}
+
+/* Crisis support styling */
+.crisis-support {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
