@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Consoly - Signup</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Signup page for creating an account in the Consoly community.">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+</head>
+<body class="w3-content w3-theme-l5">
+<div class="w3-container w3-center w3-padding-64">
+    <div class="w3-card-4 w3-white" style="max-width:500px;margin:auto;">
+        <div class="w3-container w3-theme-l1">
+            <h2>Signup to Consoly</h2>
+        </div>
+        <form id="signup-form" class="w3-container w3-padding-16">
+            <div class="w3-section">
+                <label for="email">Email</label>
+                <input id="email" class="w3-input w3-border" type="email" placeholder="Enter your email" required aria-label="Email">
+            </div>
+            <div class="w3-section">
+                <label for="confirm-email">Confirm Email</label>
+                <input id="confirm-email" class="w3-input w3-border" type="email" placeholder="Confirm your email" required aria-label="Confirm Email">
+            </div>
+            <div class="w3-section">
+                <label for="password">Password</label>
+                <input id="password" class="w3-input w3-border" type="password" placeholder="Enter a secure password" required aria-label="Password">
+                <p class="w3-text-grey w3-small">Passwords must include uppercase letters, lowercase letters, numbers, and special characters.</p>
+            </div>
+            <div class="w3-section">
+                <label for="confirm-password">Confirm Password</label>
+                <input id="confirm-password" class="w3-input w3-border" type="password" placeholder="Confirm your password" required aria-label="Confirm Password">
+            </div>
+            <div class="w3-section">
+                <button type="submit" class="w3-button w3-block w3-theme-d1" aria-label="Sign Up">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="module">
+    import bcrypt from './js/bcrypt.min.js';
+    import { addUser, getUserByEmail } from '/js/db-utils.js';
+    import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/esm-browser/index.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const signupForm = document.getElementById('signup-form');
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const confirmEmail = document.getElementById('confirm-email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (email !== confirmEmail) {
+                return alert('Emails do not match.');
+            }
+
+            if (password !== confirmPassword) {
+                return alert('Passwords do not match.');
+            }
+
+            // Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.
+            if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
+                return alert('Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.');
+            }
+
+            const existingUser = await getUserByEmail(email);
+            if (existingUser) {
+                return alert('Email is already registered.');
+            }
+
+            try {
+                const userId = uuidv4();
+
+                await addUser({ email, password: hashedPassword, id: userId });
+
+                alert(`Signup successful! Your User ID is: ${userId}`);
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 5000); // 5 seconds delay
+            } catch (error) {
+                alert('An error occurred. Please try again later.');
+            }
+        });
+    });
+</script>
+</body>
+</html>

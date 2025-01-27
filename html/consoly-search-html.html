@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Consoly - Search</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Search page for finding conversations in the Consoly community.">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+</head>
+<body class="w3-content w3-theme-l5">
+<div class="w3-container w3-padding-64">
+    <div class="w3-card w3-white">
+        <header class="w3-container w3-theme-l1 w3-padding">
+            <h2>Search Conversations</h2>
+        </header>
+        <div class="w3-container w3-padding">
+            <input class="w3-input w3-border" type="text" placeholder="Search topics, feelings, experiences..." aria-label="Search Conversations">
+            <div class="w3-section w3-row">
+                <div class="w3-col m4"><button class="w3-button w3-theme-d1 w3-block" aria-label="Filter Mental Health">Mental Health</button></div>
+                <div class="w3-col m4"><button class="w3-button w3-theme-d2 w3-block" aria-label="Filter Loss">Loss</button></div>
+                <div class="w3-col m4"><button class="w3-button w3-theme-d3 w3-block" aria-label="Filter Relationships">Relationships</button></div>
+            </div>
+            <div class="w3-panel w3-card w3-light-grey" id="search-results">
+                <p>Search Results:</p>
+                <ul class="w3-ul" aria-live="polite">
+                    <li class="w3-padding-16">Anonymous Post about dealing with grief</li>
+                    <li class="w3-padding-16">Support thread on mental health recovery</li>
+                    <li class="w3-padding-16">Shared experience of personal transformation</li>
+                    <li class="w3-padding-16">Tips for managing anxiety</li>
+                    <li class="w3-padding-16">Healing after a breakup</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="w3-container w3-theme-d3 w3-padding">
+    <p class="w3-center">Need help? <a href="support.html" class="w3-text-theme-d1">Contact Support</a></p>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('input[type="text"]');
+        const resultsContainer = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim().toLowerCase();
+            const items = Array.from(resultsContainer.querySelectorAll('li'));
+
+            items.forEach(item => {
+                const content = item.textContent.toLowerCase();
+                item.style.display = content.includes(query) ? '' : 'none';
+            });
+        });
+    });
+</script>
+</body>
+</html>

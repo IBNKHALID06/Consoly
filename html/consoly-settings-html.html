@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Consoly - Settings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Settings page for managing account preferences in the Consoly community.">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+</head>
+<body class="w3-content w3-theme-l5">
+<div class="w3-container w3-padding-64">
+    <div class="w3-card w3-white">
+        <header class="w3-container w3-theme-l1 w3-padding">
+            <h2>Account Settings</h2>
+        </header>
+        <div class="w3-container w3-padding">
+            <div class="w3-section">
+                <label for="username">Anonymous Username</label>
+                <input id="username" class="w3-input w3-border" type="text" placeholder="Enter your anonymous username" aria-label="Anonymous Username">
+                <p class="w3-text-grey w3-small">Usernames help personalize your experience while remaining anonymous.</p>
+            </div>
+            <div class="w3-section">
+                <label>Notification Preferences</label>
+                <div>
+                    <label><input class="w3-check" type="checkbox" aria-label="Email Notifications"> Email Notifications</label>
+                    <label><input class="w3-check" type="checkbox" aria-label="Push Notifications"> Push Notifications</label>
+                </div>
+            </div>
+            <div class="w3-section">
+                <label for="privacy">Privacy Settings</label>
+                <select id="privacy" class="w3-select" aria-label="Privacy Settings">
+                    <option value="max" selected>Maximum Anonymity</option>
+                    <option value="moderate">Moderate Privacy</option>
+                    <option value="minimal">Minimal Tracking</option>
+                </select>
+                <p class="w3-text-grey w3-small">Choose how much personal data is stored and tracked.</p>
+            </div>
+            <div class="w3-section">
+                <label>Account Security</label>
+                <button class="w3-button w3-border w3-theme-d1" aria-label="Change Password">Change Password</button>
+                <p class="w3-text-grey w3-small">Ensure your password is strong and unique to protect your account.</p>
+            </div>
+            <button class="w3-button w3-theme-d1 w3-block" aria-label="Save Settings">Save Settings</button>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelector('button.w3-block').addEventListener('click', () => {
+        alert('Settings saved successfully!');
+    });
+</script>
+</body>
+</html>

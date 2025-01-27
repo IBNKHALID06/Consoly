@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Inbox page for viewing anonymous support messages in the Consoly community.">
+    <title>Consoly - Inbox</title>
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body class="w3-theme-l5">
+    <nav class="w3-top w3-bar w3-theme-d2">
+        <a href="index.html" class="w3-bar-item w3-button" aria-label="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="w3-bar-item w3-button" aria-label="Inbox"><i class="fas fa-envelope"></i> Inbox</a>
+    </nav>
+
+    <div class="w3-container w3-content inbox-container">
+        <div class="w3-card w3-white">
+            <header class="w3-container w3-theme-d3">
+                <h3>Anonymous Support Messages</h3>
+            </header>
+            <div id="message-container" class="w3-container">
+                <!-- Messages will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const messageContainer = document.getElementById('message-container');
+            
+            // Simulated message loading
+            const messages = [
+                { sender: 'Anonymous', content: 'Thank you for being here for me today.' },
+                { sender: 'Anonymous', content: 'Some days are harder than others, but I\'m grateful for this community.' }
+            ];
+    
+            messages.forEach(msg => {
+                const msgElement = document.createElement('div');
+                msgElement.classList.add('w3-panel', 'w3-light-grey', 'w3-round-large', 'w3-margin');
+                msgElement.innerHTML = `
+                    <p><strong>${msg.sender}</strong>: ${msg.content}</p>
+                `;
+                messageContainer.appendChild(msgElement);
+            });
+        });
+    </script>
+</body>
+</html>
