@@ -14,7 +14,7 @@ A safe, anonymous mental health support platform with AI-powered emotional compa
 
 ## 🚀 Tech Stack
 
-- **Frontend**: Next.js 14, React 18, TypeScript
+- **Frontend**: Next.js 14.2, React 18, TypeScript
 - **Styling**: Tailwind CSS, Radix UI
 - **AI**: Google Gemini AI for emotional analysis
 - **Authentication**: Custom anonymous system with bcrypt encryption

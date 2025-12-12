@@ -9,11 +9,19 @@ const users: User[] = []
 const friendRequests: FriendRequest[] = []
 const usedNumericIds = new Set<number>()
 
-// Encryption key for sensitive data (in production, use environment variable)
-const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || "your-32-character-secret-key-here"
+// Encryption key for sensitive data (must be set in environment variables)
+const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY
+
+if (!ENCRYPTION_KEY) {
+  console.error("ENCRYPTION_KEY not found in environment variables. User encryption will not work properly.")
+}
 
 // Encrypt sensitive data like emails
 function encrypt(text: string): string {
+  if (!ENCRYPTION_KEY) {
+    console.error("Cannot encrypt: ENCRYPTION_KEY not set")
+    return text
+  }
   const cipher = crypto.createCipher("aes-256-cbc", ENCRYPTION_KEY)
   let encrypted = cipher.update(text, "utf8", "hex")
   encrypted += cipher.final("hex")
@@ -22,6 +30,10 @@ function encrypt(text: string): string {
 
 // Decrypt sensitive data
 function decrypt(encryptedText: string): string {
+  if (!ENCRYPTION_KEY) {
+    console.error("Cannot decrypt: ENCRYPTION_KEY not set")
+    return encryptedText
+  }
   try {
     const decipher = crypto.createDecipher("aes-256-cbc", ENCRYPTION_KEY)
     let decrypted = decipher.update(encryptedText, "hex", "utf8")

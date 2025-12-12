@@ -2,8 +2,14 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
-// Initialize Google GenAI with enhanced configuration
-const genAI = new GoogleGenerativeAI("AIzaSyC4XgUouaYDGVf5VxWGgnxCzmq3z1qMfeI")
+// Initialize Google GenAI with server-side environment variable only
+const apiKey = process.env.GOOGLE_AI_API_KEY
+
+if (!apiKey) {
+  console.error("Google AI API key not found. Please set GOOGLE_AI_API_KEY in your environment variables.")
+}
+
+const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null
 
 export interface AIAnalysis {
   sentiment: {
@@ -50,6 +56,11 @@ export async function analyzeUserInput(
   conversationHistory: string[] = [],
   userProfile?: any,
 ): Promise<AIAnalysis> {
+  if (!genAI) {
+    console.warn("Google AI not available, using fallback analysis")
+    return createFallbackAnalysis(message)
+  }
+
   try {
     const model = genAI.getGenerativeModel({
       model: "gemini-2.0-flash",
@@ -126,6 +137,11 @@ export async function generatePersonalizedResponse(
   userName = "friend",
   conversationHistory: string[] = [],
 ): Promise<PersonalizedResponse> {
+  if (!genAI) {
+    console.warn("Google AI not available, using fallback response")
+    return createFallbackResponse(message, analysis, userName)
+  }
+
   try {
     const model = genAI.getGenerativeModel({
       model: "gemini-2.0-flash",
@@ -190,6 +206,11 @@ Respond naturally and authentically.`
 
 // Generate Dynamic Affirmations
 export async function generateDynamicAffirmations(analysis: AIAnalysis, userName = "friend"): Promise<string[]> {
+  if (!genAI) {
+    console.warn("Google AI not available, using default affirmations")
+    return getDefaultAffirmations(analysis.sentiment.primary)
+  }
+
   try {
     const model = genAI.getGenerativeModel({
       model: "gemini-2.0-flash",
@@ -239,6 +260,16 @@ export async function generateConversationInsights(
   recommendations: string[]
   emotionalJourney: string
 }> {
+  if (!genAI) {
+    console.warn("Google AI not available, using default insights")
+    return {
+      patterns: ["Seeking support and connection"],
+      progress: "Taking positive steps by reaching out",
+      recommendations: ["Continue expressing feelings", "Practice self-compassion"],
+      emotionalJourney: "On a path of healing and self-discovery",
+    }
+  }
+
   try {
     const model = genAI.getGenerativeModel({
       model: "gemini-2.0-flash",
